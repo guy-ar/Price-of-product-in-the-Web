@@ -3,4 +3,4 @@ pymongo==3.7.2
 beautifulsoup4==4.7.1
 passlib==1.7.1
 requests==2.21.0
-uwsgi==
+uwsgi==2.0.18
