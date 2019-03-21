@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+    <br>
+    <h1>Alert Index</h1>
+
+     <!-- we will use Jinga control flows -->
+    {% if alerts|length > 0 %}
+        <div class="list-group">
+            {% for alert in alerts %}
+            <a href="{{ url_for('alerts.get_alert_page', alert_id = alert._id) }}" class="list-group-item list-group-item-action
+               {{ 'list-group-item-warning' if not alert.is_active else '' }}">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Alert for {{ alert.item.name }}</h5>
+                    <small>Price Limit: {{ alert.price_limit}}</small>
+                </div>
+                <p class="mb-1">
+                    Last Checked: <Strong>{{ alert.last_checked.strftime("%d-%m-%Y at %H:%M")}} </Strong>
+                </p>
+                <div class="d-flex w-100 justify-content-between">
+                    <p class="mb-1">
+                        Received Price: <Strong>{{ alert.item.price}} </Strong>
+                    </p>
+                    {% if not alert.is_active %}
+                    <p><small>Alert is <strong>Not Active </strong><i class="far fa-times-circle"></i></small></p>
+                    {% endif %}
+                </div>
+            </a>
+        {% endfor %}
+        </div>
+    {% else %}
+         <h3>There are no Alerts</h3>
+    {% endif %}
+    <br>
+
+{% endblock %}

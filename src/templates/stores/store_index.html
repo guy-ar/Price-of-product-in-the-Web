@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+    <br>
+    <h1>Store Index</h1>
+
+     <!-- we will use Jinga control flows -->
+    {% if stores|length > 0 %}
+        <div class="list-group">
+            {% for store in stores %}
+            <a href="{{ url_for('stores.get_store_page', store_id = store._id) }}" class="list-group-item list-group-item-action">
+            <h5 class="mb-1">{{ store.name }} Store</h5>
+
+            <p>All store products should  start with {{ store.url_prefix}}</p>
+
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+         <h3>There are no Stores</h3>
+    {% endif %}
+    <br>
+    <!-- add button to create new alert in the context of the user -->
+    <!-- add button is valid only for admin -->
+    {% if session['email'] in config.ADMINS %}
+        <a class="btn btn-primary" href="{{ url_for('stores.create_store')}}"><i class="far fa-plus-square"></i> Create New</a>
+    {% endif %}
+
+
+{% endblock %}

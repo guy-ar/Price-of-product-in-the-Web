@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br>
+<div class="card text-center">
+  <div class="card-header">
+    Alert for {{ alert.item.name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Last Price found: {{ alert.item.price}}</h5>
+    <p class="card-text"> Price Limit: {{ alert.price_limit}}</p>
+    <p class="card-text"> User: {{ alert.user_email }}</p>
+    <a href="{{ alert.item.url }}" class="btn btn-success">Visit Site</a>
+    {% if alert.is_active %}
+    <a href="{{ url_for('alerts.deactivate_alert', alert_id=alert._id) }}" class="btn btn-danger">Deactivate Alert</a>
+    <a href="{{ url_for('alerts.update_alert', alert_id=alert._id) }}" class="btn btn-warning">Edit Alert</a>
+    {% else %}
+     <a href="{{ url_for('alerts.activate_alert', alert_id=alert._id) }}" class="btn btn-warning">Activate Alert</a>
+    <a href="{{ url_for('alerts.delete_alert', alert_id=alert._id) }}" class="btn btn-danger">Delete Alert</a>
+    {% endif %}
+    <a href="{{ url_for('alerts.check_alert_price', alert_id=alert._id) }}" class="btn btn-info">Check Price</a>
+  </div>
+  <div class="card-footer text-muted">
+    <div class="d-flex w-100 justify-content-between">
+   Last Checked: {{ alert.last_checked.strftime("%d-%m-%Y at %H:%M")}}
+    {% if alert.is_active %}
+    <strong> Status is Active </strong>
+    {% else %}
+    <strong>Alert Status is In-Active </strong>
+    {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

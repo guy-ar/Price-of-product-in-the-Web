@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br>
+<h1>Edit Alert
+ <small>Used for update existing alert for specific item</small></h1>
+ <br>
+
+    <form id="update-alert-form"  method="post" class ="form-size">
+        <div class="form-group">
+            <label for="price_limit">Alert limit</label>
+            <input type="text" class="form-control" id="price_limit" name="price_limit" aria-describedby="priceLimitHelp" placeholder="45.0" value="{{ alert.price_limit }}">
+            <small id="priceLimitHelp" class="form-text text-muted">You will get an email if the price will reach below this limit.</small>
+        </div>
+        <button type="submit" class="btn btn-warning">Update</button>
+    </form>
+
+
+{% endblock %}

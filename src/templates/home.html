@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br>
+
+<div class="jumbotron">
+  <h1 class="display-4">Pricing Services</h1>
+  <p class="lead">This is a simple app that can scan online store websites to alert
+       you of price drops in items that interest you.</p>
+  <hr class="my-4">
+  <p>Just sign up, and get started by adding the URL of an item that you wish to track.
+      We'll do the rest!</p>
+  <a class="btn btn-primary btn-lg" href="{{ url_for('users.user_register') }}" role="button">Sign up</a>
+</div>
+
+{% endblock %}

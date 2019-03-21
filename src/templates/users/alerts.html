@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br xmlns="http://www.w3.org/1999/html">
+<h1>User Alerts Page</h1>
+
+     <!-- we will use Jinga control flows -->
+    {% if alerts|length > 0 %}
+    <div class="list-group">
+        {% for alert in alerts %}
+        <a href="{{ url_for('alerts.get_alert_page', alert_id = alert._id) }}" class="list-group-item list-group-item-action
+                            {{ 'list-group-item-warning' if not alert.is_active else '' }}">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">Alert for {{ alert.item.name }}</h5>
+                <small>Price Limit: {{ alert.price_limit}}</small>
+            </div>
+            <p class="mb-1">
+                Last Checked: <Strong>{{ alert.last_checked.strftime("%d-%m-%Y at %H:%M")}} </Strong>
+            </p>
+            <p class="mb-1">
+                Received Price: <Strong>{{ alert.item.price}} </Strong>
+            </p>
+            <div class="d-flex w-100 justify-content-between">
+                <small>User: {{ alert.user_email }}</small>
+                {% if not alert.is_active %}
+                <small>Alert is <strong>Not Active </strong><i class="far fa-times-circle"></i></small>
+                {% endif %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+         <h3>There are no Alerts</h3>
+    {% endif %}
+    <br>
+    <!-- add button to create new alert in the context of the user -->
+    <a class="btn btn-primary" href="{{ url_for('alerts.create_alert')}}"><i class="far fa-plus-square"></i> Create New</a>
+
+{% endblock %}
+
+

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br>
+<div class="card text-center">
+  <div class="card-header">
+    {{ store.name }} Store
+  </div>
+  <div class="card-body">
+        <h5 class="card-title">Store URL: {{ store.url_prefix }}</h5>
+        <p class="card-text"> Price Taq: {{ store.tag_name }}</p>
+        <p class="card-text"> Query: {{ store.query }}</p>
+        <a href="{{ store.url_prefix }}" class="btn btn-success">Visit Store</a>
+        {% if session['email'] in config.ADMINS %}
+            <a href="{{ url_for('stores.delete_store', store_id=store._id) }}" class="btn btn-danger">Delete Store</a>
+            <a href="{{ url_for('stores.update_store', store_id=store._id) }}" class="btn btn-info">Update Store</a>
+        {% endif %}
+  </div>
+</div>
+
+
+{% endblock %}
+
+name, url_prefix, tag_name, query

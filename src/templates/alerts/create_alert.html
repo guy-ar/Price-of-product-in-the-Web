@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<!-- override the block content -->
+{% block content %}
+<br>
+<h1>Create Alert
+ <small>Used for create new alert for specific item</small></h1>
+ <br>
+
+    <form id="create-alert-form" action="{{ url_for('alerts.create_alert') }}" method="post" class ="form-size">
+        <div class="form-group">
+            <label for="name">Alert/Item Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Enter the Alert/Item name">
+        </div>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url" name="url" aria-describedby="urlHelp" placeholder="http://www...">
+            <small id="urlHelp" class="form-text text-muted">Enter the URL of the item to explore.</small>
+        </div>
+        <div class="form-group">
+            <label for="price_limit">Alert limit</label>
+            <input type="text" class="form-control" id="price_limit" name="price_limit" aria-describedby="priceLimitHelp" placeholder="45.0">
+            <small id="priceLimitHelp" class="form-text text-muted">You will get an email if the price will reach below this limit.</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+
+
+{% endblock %}
