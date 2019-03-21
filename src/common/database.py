@@ -13,7 +13,9 @@ class Database(object):
         client = pymongo.MongoClient(Database.URI)
         #gain access to the database and set the reference to static member
         #Database.DATABASE = client['test']
-        Database.DATABASE = client.get_default_database()
+        #Database.DATABASE = client.get_default_database()
+        Database.DATABASE = client['heroku_6p071rp9']
+
 
     @staticmethod
     def insert(collection, data):
