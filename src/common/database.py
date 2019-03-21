@@ -12,7 +12,8 @@ class Database(object):
     def initialize():
         client = pymongo.MongoClient(Database.URI)
         #gain access to the database and set the reference to static member
-        Database.DATABASE = client['test']
+        #Database.DATABASE = client['test']
+        Database.DATABASE = client.get_database()
 
     @staticmethod
     def insert(collection, data):
