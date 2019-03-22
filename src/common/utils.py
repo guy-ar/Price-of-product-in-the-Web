@@ -32,6 +32,6 @@ class Utils(object):
         :return: True is the email is matching the regular expression, else False
         """
         #define new matcher based on the regaulr expression
-        #email_address_matcher = re.compile('^[\w-]+@([\w-]+\.)+[\w]+$')
-        email_address_matcher = re.compile('^[\w-\.]+@([\w-]+\.)+[\w-]{2, 4}$')
+        email_address_matcher = re.compile('^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$')
+
         return True if email_address_matcher.match(email) else False
