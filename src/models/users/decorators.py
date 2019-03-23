@@ -28,7 +28,7 @@ def requires_admin_priv(func):
     def decorated_fucntion(*args, **kwargs):
         if 'email' not in session.keys() or session['email'] is None:
             return redirect(url_for('users.user_login'))
-        elif session['email'] not in app.config.ADMINS:
+        elif session['email'] not in app.config['ADMINS']:
             return redirect(url_for('users.user_login'))
         #if did not happen - return to original function
         return func(*args, **kwargs)
